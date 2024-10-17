@@ -165,4 +165,4 @@ Also, inside the strategy the function OptimizeConstants! can be called. This fu
 	   return changeDone;
 	end;
 
-These four strategies are provided in the file DoME.jl and are available for use.
+These four strategies are provided in the library and are available for use. They can be specified as a hyperparameter whan calling the funcion dome.
