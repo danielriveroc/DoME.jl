@@ -1,6 +1,6 @@
 # DoME
 
-This project contains the source code of the first version of the DoME algorithm for Symbolic Regression. The aim of this code is to be able to repeat the experiments described in the paper available at https://doi.org/10.1016/j.eswa.2022.116712. 
+This project contains the source code of the first version of the DoME algorithm for Symbolic Regression. The aim of this code is to be able to repeat the experiments described in the paper available at https://doi.org/10.1016/j.eswa.2022.116712
 
 This library is fully functional, feel free to use it to perform your experiments. However, if any publication is generated through this system, please add a citation to that paper. Also, if you need any more explanations on how to run DoME, or there is any issue with this repository, please let me know.
 
@@ -41,7 +41,7 @@ The easiest way to wun DoME is by calling the function dome. Here is an example 
 	expression = replace(expression, "X7" => "CHMAX");
 	println("Best expression found (with the real names of the variables): ", expression);
 
-When calling the function dome, inputs is a NxP matrix of real numbers, and targets is a N-length vector or real numbers (N: number of instances, P: number of variables). Inputs and targets can have Float32 or Float64 values; however, since many constants are generated during the run of the algorithm, it is recommended to use Float64 to have the highest precision. Also, the elements of both inputs and targets must have the same type (Float32 or Float64). The parameters minimumReductionMSE, maximumNodes and strategy are the 3 hyperparameters described in the paper.
+When calling the function dome, inputs is a NxP matrix of real numbers, and targets is a N-length vector or real numbers (N: number of instances, P: number of attributes). Inputs and targets can have Float32 or Float64 values; however, since many constants are generated during the run of the algorithm, it is recommended to use Float64 to have the highest precision. Also, the elements of both inputs and targets must have the same type (Float32 or Float64). The parameters minimumReductionMSE, maximumNodes and strategy are the 3 hyperparameters described in the paper.
 
 The declaration of this function is the following, with the whole set of parameters and their default values:
 
