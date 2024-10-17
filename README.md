@@ -2,7 +2,7 @@
 
 This project contains the source code of the first version of the DoME algorithm for Symbolic Regression. The aim of this code is to be able to repeat the experiments described in the paper available at https://doi.org/10.1016/j.eswa.2022.116712. 
 
-Feel free to use this source code to perform your experiments. However, if any publication is generated through this system, please add a citation to that paper. Also, if you need any more explanations on how to run DoME or how to repeat the experiments, or there is any issue with this repository, please let me know.
+This library is fully functional, tested with 100+ datasets. Feel free to use this source code to perform your experiments. However, if any publication is generated through this system, please add a citation to that paper. Also, if you need any more explanations on how to run DoME or how to repeat the experiments, or there is any issue with this repository, please let me know.
 
 # How to use DoME
 
