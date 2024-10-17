@@ -2,7 +2,7 @@
 
 This project contains the source code of the first version of the DoME algorithm for Symbolic Regression. The aim of this code is to be able to repeat the experiments described in the paper available at https://doi.org/10.1016/j.eswa.2022.116712. 
 
-This library is fully functional, tested with 100+ datasets. Feel free to use this source code to perform your experiments. However, if any publication is generated through this system, please add a citation to that paper. Also, if you need any more explanations on how to run DoME or how to repeat the experiments, or there is any issue with this repository, please let me know.
+This library is fully functional, feel free to use it to perform your experiments. However, if any publication is generated through this system, please add a citation to that paper. Also, if you need any more explanations on how to run DoME, or there is any issue with this repository, please let me know.
 
 To run DoME, only the packages Statistics is needed.
 
@@ -14,7 +14,7 @@ The easiest way to wun DoME is by calling the function dome. Here is an example 
 	using DelimitedFiles
 	
 	# Load the dataset and create a matrix with the inputs and a vector for the targets
-	dataset = DelimitedFiles.readdlm("datasets/561_cpu.tsv");
+	dataset = DelimitedFiles.readdlm("561_cpu.tsv");
 	inputs  = Float64.(dataset[2:end, 1:end-1]);
 	targets = Float64.(dataset[2:end, end]);
 
@@ -45,27 +45,29 @@ When calling the function dome, inputs is a NxP matrix of real numbers, and targ
 
 The declaration of this function is the following, with the whole set of parameters and their default values:
 
-	function dome(inputs::Array{<:Real,2}, targets::Array{<:Real,1};
+	function dome(inputs::Array{<:Real,2}, targets::AbstractArray{<:Real,1};
 	    # Each instance in inputs is in a row or in a column
-	    dataInRows          ::Bool           = true,
+	    dataInRows          ::Bool                     = true,
 	    # Hyperparameters of the algorithm
-	    minimumReductionMSE ::Real           = 1e-6,
-	    maximumNodes        ::Int64          = 50 ,
-	    strategy            ::Function       = StrategyExhaustive ,
+	    minimumReductionMSE ::Real                     = 1e-6,
+	    maximumNodes        ::Int64                    = 50 ,
+	    strategy            ::Function                 = StrategySelectiveWithConstantOptimization ,
 	    # Other hyperparameter that the user might find useful
-	    maximumHeight       ::Real           = Inf ,
+	    maximumHeight       ::Real                     = Inf ,
 	    # Stopping criteria
-	    goalMSE             ::Real           = 0 ,
-	    maxIterations       ::Real           = Inf ,
-	    # Indices of the instances used for validation and test (validation has not been tested and may fail)
-	    validationIndices   ::Array{Int64,1} = Int64[],
-	    testIndices         ::Array{Int64,1} = Int64[],
+	    goalMSE             ::Real                     = 0 ,
+	    maxIterations       ::Real                     = Inf ,
+	    # Whether to use the division operator or not
+	    useDivisionOperator ::Bool                     = true ,
+	    # Indices of the instances used for validation and test
+	    validationIndices   ::AbstractVector{Int64}    = Int64[],
+	    testIndices         ::AbstractVector{Int64}    = Int64[],
+	    # Function to be called at the end of each iteration
+	    callFunction        ::Union{Nothing, Function} = nothing ,
 	    # If you want to see the iterations on screen. This makes the execution slower
-	    showText            ::Bool           = false ,
-	    # This parameter was used only for development. If it is set to true, the execution becomes much slower
-	    checkForErrors      ::Bool           = false
-	)
-
+	    showText            ::Bool                     = false ,
+	    )
+    
 The description of these parameters is the following:
 
 	dataInRows -> allows the input matrix to have dimensions NxP when it is set to true (by default) or PxN when it is false (N: number of instances).
@@ -78,7 +80,6 @@ The description of these parameters is the following:
 	validationIndices -> allows to split the dataset by separating some instances to perform the validation, specifying which ones will be used for validation.
 	testIndices -> allows to split the dataset by separating some instances to perform the test, specifying which ones will be used for test.
 	showText -> if it is set to true, on each iteration some text (iteration number, best tree, MSE in training and test) is shown.
-	checkForErrors -> this parameter was used only for debugging, to easily find bugs in the source code. Therefore, it is best to leave it as false.
 
 As it can be sen, this function allows the definition of a validation set.
 
