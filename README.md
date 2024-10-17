@@ -4,6 +4,8 @@ This project contains the source code of the first version of the DoME algorithm
 
 This library is fully functional, tested with 100+ datasets. Feel free to use this source code to perform your experiments. However, if any publication is generated through this system, please add a citation to that paper. Also, if you need any more explanations on how to run DoME or how to repeat the experiments, or there is any issue with this repository, please let me know.
 
+To run DoME, only the packages Statistics is needed.
+
 # How to use DoME
 
 The easiest way to wun DoME is by calling the function dome. Here is an example of use, in which only the main hyperparameters are set:
@@ -78,17 +80,9 @@ The description of these parameters is the following:
 	showText -> if it is set to true, on each iteration some text (iteration number, best tree, MSE in training and test) is shown.
 	checkForErrors -> this parameter was used only for debugging, to easily find bugs in the source code. Therefore, it is best to leave it as false.
 
-As it can be sen, this function allows the definition of a validation set. However, it was not used in the experiments of the paper and thus this part of the code may have errors.
+As it can be sen, this function allows the definition of a validation set.
 
-To run this, you need to have the following files in the same folder:
-
-	- main.jl -> Main algorithm, with the searches and the 4 strategies.
-	- Tree.jl -> Tree structure creation and some useful functions to operate.
-	- Equation.jl -> Management of the equations of each node, and calculation of the best constant for each node.
-	- NodePool.jl -> Struct for storing nodes to be used in the tree. This struct is filled with variables; however, in the future other nodes (and subtrees) could be stored on it.
-
-An alternative way to run DoME is by creating a DoME struct and calling the function Step! for each iteration. This is automatically done by the previous way to run DoME. To eun DoME, only the packages Statistics and Random are needed.
-
+An alternative way to run DoME is by creating a DoME struct and calling the function Step! for each iteration. This is automatically done by the previous way to run DoME.
 
 # How to define your own strategy
 
