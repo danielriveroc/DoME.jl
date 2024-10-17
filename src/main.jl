@@ -752,10 +752,14 @@ function dome(inputs::Array{<:Real,2}, targets::AbstractArray{<:Real,1};
     if !isempty(validationIndices)
         @assert(minimum(validationIndices)>0 && maximum(validationIndices)<=length(targets));
         numValidation = length(validationIndices);
+    else
+        numValidation = 0;
     end;
     if !isempty(testIndices)
         @assert(minimum(testIndices)>0 && maximum(testIndices)<=length(targets));
         numTest = length(testIndices);
+    else
+        numTest = 0;
     end;
     trainingIndices = setdiff(1:length(targets), vcat(validationIndices, testIndices));
 

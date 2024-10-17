@@ -5,6 +5,10 @@ using Statistics
 # The basic function with the interface
 export dome
 
+# For writing the DoME expressions
+export latexString
+export vectorString
+
 # If you want to write your own loop
 export DOME
 export Step!

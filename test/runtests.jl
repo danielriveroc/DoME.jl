@@ -1,5 +1,6 @@
 using DoME
 using Test
+using Statistics
 
 
 @testset "DoME.jl" begin
