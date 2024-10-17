@@ -1,6 +1,6 @@
 # DoME
 
-This project contains the source code of the first version of the DoME algorithm for Symbolic Regression. The aim of this code is to be able to repeat the experiments described in the paper available at https://doi.org/10.1016/j.eswa.2022.116712
+This library contains the source code of the DoME algorithm for Symbolic Regression. This algorithm is described in the paper available at https://doi.org/10.1016/j.eswa.2022.116712
 
 This library is fully functional, feel free to use it to perform your experiments. However, if any publication is generated through this system, please add a citation to that paper. Also, if you need any more explanations on how to run DoME, or there is any issue with this repository, please let me know.
 
@@ -8,7 +8,9 @@ To run DoME, only the packages Statistics is needed.
 
 # How to use DoME
 
-The easiest way to wun DoME is by calling the function dome. Here is an example of use, in which only the main hyperparameters are set:
+The easiest way to wun DoME is by calling the function dome, which performs all of the operations. This function gets two parameters: inputs, as a real-number matrix, and targets, as a real-number vector. Also, it can receive hyperparameter values.
+
+Here is an example of use, in which only the main hyperparameters are set:
 
 	using FileIO
 	using DelimitedFiles
@@ -19,7 +21,8 @@ The easiest way to wun DoME is by calling the function dome. Here is an example 
 	targets = Float64.(dataset[2:end, end]);
 
 	# Load the DoME system
-	include("DoME.jl");
+	using DoME
+ 
 	# Run DoME with these parameters
 	(trainingMSE, validationMSE, testMSE, bestTree) = dome(inputs, targets;
 	   minimumReductionMSE = 1e-6,
@@ -27,9 +30,11 @@ The easiest way to wun DoME is by calling the function dome. Here is an example 
 	   strategy = StrategyExhaustive,
 	   showText = true
 	);
+
 	# Write the expression on screen
 	println("Best expression found: ", string(bestTree));
 	println("Best expression found (written in Latex): ", latexString(bestTree));
+ 
 	# If you want to rename the variable names, one of the easiest way is to do something like:
 	expression = string(bestTree);
 	expression = replace(expression, "X1" => "vendor");
