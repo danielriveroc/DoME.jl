@@ -153,7 +153,7 @@ mutable struct DOME
     useDivisionOperator::Bool
     searchResults::SearchResults
     checkForErrors::Bool
-    function DOME(inputs::Array{<:Real,2}, targets::AbstractArray{<:Real,1};
+    function DOME(inputs::AbstractArray{<:Real,2}, targets::AbstractArray{<:Real,1};
         dataInRows=true ,
         maximumNodes = Inf ,
         # initialTreeOrder = 1 ,
@@ -687,7 +687,7 @@ end;
 # The function is an interface that creates the DoME object and calls the function Step! on each iteration
 #
 
-function dome(inputs::Array{<:Real,2}, targets::AbstractArray{<:Real,1};
+function dome(inputs::AbstractArray{<:Real,2}, targets::AbstractArray{<:Real,1};
     # Each instance in inputs is in a row or in a column
     dataInRows          ::Bool                     = true,
     # Hyperparameters of the algorithm
