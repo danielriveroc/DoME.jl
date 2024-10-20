@@ -50,7 +50,7 @@ When calling the function dome, inputs is a NxP matrix of real numbers, and targ
 
 The declaration of this function is the following, with the whole set of parameters and their default values:
 
-	function dome(inputs::Array{<:Real,2}, targets::AbstractArray{<:Real,1};
+	function dome(inputs::AbstractArray{<:Real,2}, targets::AbstractArray{<:Real,1};
 	    # Each instance in inputs is in a row or in a column
 	    dataInRows          ::Bool                     = true,
 	    # Hyperparameters of the algorithm
